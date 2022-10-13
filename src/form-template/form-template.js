@@ -1,16 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Button as SignavioButton, PrimaryButton } from '@signavio/ui';
+import { Stack } from '@signavio/ui/core';
+
 import FormTemplate from '@data-driven-forms/common/form-template';
 
-export const Button = ({ label, buttonType, ...props }) => <button {...props}>{label}</button>;
+export const Button = ({ label, buttonType, ...props }) => buttonType === 'submit' ?
+<PrimaryButton {...props}>{label}</PrimaryButton>
+: <SignavioButton {...props}>{label}</SignavioButton>;
 
 Button.propTypes = {
   label: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   buttonType: PropTypes.string
 };
 
-export const ButtonGroup = ({ children, ...props }) => <div {...props}>{children}</div>;
+export const ButtonGroup = ({ children, ...props }) => <Stack spacing="small" direction="horizontal" {...props}>{children}</Stack>;
 
 ButtonGroup.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node])
@@ -30,7 +35,9 @@ Description.propTypes = {
 
 export const Form = ({ children, ...props }) => (
   <form noValidate {...props}>
-    {children}
+    <Stack spacing="small" direction="vertical">
+      {children}
+    </Stack>
   </form>
 );
 

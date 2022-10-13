@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useFormApi } from '@data-driven-forms/react-form-renderer';
 
 import { TabBar, Tab } from '@signavio/ui';
+import { Stack } from '@signavio/ui/core';
 
 const Tabs = ({ fields }) => {
   const formOptions = useFormApi();
@@ -28,7 +29,9 @@ const Tabs = ({ fields }) => {
       {
         fields.map((tab) => (
           <div key={tab.name} hidden={activeTab !== tab.name}>
-            {formOptions.renderForm(tab.fields, formOptions)}
+            <Stack spacing="small" direction="vertical">
+                {formOptions.renderForm(tab.fields, formOptions)}
+            </Stack>
           </div>
         ))
       }
