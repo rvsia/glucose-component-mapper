@@ -2,31 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useFieldApi } from '@data-driven-forms/react-form-renderer';
 
-const SingleRadio = (props) => {
-  const { label, input, isDisabled } = useFieldApi({ type: 'radio', ...props });
+import { RadioGroup, RadioButton } from '@signavio/ui';
 
-  const id = `${input.name}-${input.value}`;
+import getProps from '../get-props';
+
+const Radio = (props) => {
+  const { input, meta, options, ...rest } = useFieldApi({ ...props, component: ''});
 
   return (
-    <div key={id}>
-      <input {...input} id={id} disabled={isDisabled} />
-      <label htmlFor={id}>{label}</label>
-    </div>
-  );
+    <RadioGroup {...input} {...rest} {...getProps({meta})}>
+      {options.map(({label, ...option}) => (
+        <RadioButton key={option.value} {...option}>
+          {label}
+        </RadioButton>
+      ))}
+    </RadioGroup>
+  )
 };
 
-const Radio = ({ label, options, ...props }) => (
-  <div>
-    <p>{label}</p>
-    {options.map((option) => (
-      <SingleRadio key={option.value} {...props} label={option.label} value={option.value} />
-    ))}
-  </div>
-);
-
 Radio.propTypes = {
-  isDisabled: PropTypes.bool,
-  label: PropTypes.node,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.node,

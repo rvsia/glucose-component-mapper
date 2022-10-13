@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import { useFieldApi } from '@data-driven-forms/react-form-renderer';
 import MultipleChoiceListCommon from '@data-driven-forms/common/multiple-choice-list';
 
+import { CheckboxGroup, Checkbox as SignavioCheckbox } from '@signavio/ui';
+
+import getProps from '../get-props';
+
 const Wrapper = ({ label, children }) => (
-  <div>
-    <h3>{label}</h3>
+  <CheckboxGroup label={label}>
     {children}
-  </div>
+  </CheckboxGroup>
 );
 
 Wrapper.propTypes = {
@@ -16,34 +19,32 @@ Wrapper.propTypes = {
 };
 
 const SingleCheckbox = (props) => {
-  const { input, isDisabled, label, name } = useFieldApi({ ...props, type: 'checkbox' });
+  const { input, label, meta, ...rest } = useFieldApi({ ...props, type: 'checkbox' });
 
   return (
-    <React.Fragment>
-      <label htmlFor={name}>{label}</label>
-      <input {...input} id={name} type="checkbox" disabled={isDisabled}/>
-    </React.Fragment>
+    <SignavioCheckbox {...input} {...rest} {...getProps({meta})}>
+      {label}
+    </SignavioCheckbox>
   );
 };
 
-const SingleCheckboxInCommon = ({ label, isDisabled, id, ...props }) => (
-  <React.Fragment>
-    <label htmlFor={id}>{label}</label>
-    <input {...props} id={id} type="checkbox" disabled={isDisabled} />
-  </React.Fragment>
-);
+const MultipleCheckbox = (props) => {
+  const { input, meta, options, ...rest } = useFieldApi({ ...props, component: '' });
 
-SingleCheckboxInCommon.propTypes = {
-  label: PropTypes.node,
-  input: PropTypes.object,
-  isDisabled: PropTypes.bool,
-  name: PropTypes.string,
-  id: PropTypes.string
+  return (
+    <CheckboxGroup {...input} {...rest} {...getProps({meta})}>
+      {options.map(({label, ...option}) => (
+        <SignavioCheckbox key={option.value} {...option}>
+          {label}
+        </SignavioCheckbox>
+      ))}
+    </CheckboxGroup>
+  )
 };
 
 const Checkbox = ({ options, ...props }) =>
   options ? (
-    <MultipleChoiceListCommon options={options} {...props} Wrapper={Wrapper} Checkbox={SingleCheckboxInCommon} />
+    <MultipleCheckbox options={options} {...props} />
   ) : (
     <SingleCheckbox {...props} />
   );

@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 
 import { useFormApi } from '@data-driven-forms/react-form-renderer';
 
-const SubForm = ({ fields }) => {
+import { Group } from '@signavio/ui';
+
+
+const SubForm = ({ fields, name, ...rest }) => {
   const formOptions = useFormApi();
 
-  return <div>{formOptions.renderForm(fields, formOptions)}</div>;
+  return <Group {...rest}>{formOptions.renderForm(fields, formOptions)}</Group>;
 };
 
 SubForm.propTypes = {

@@ -23,25 +23,27 @@ const asyncLoadOptions = (searchValue) =>
   );
 
 const output = {
-  title: 'Testing dialog',
+  label: 'Testing dialog',
   description: 'Description of testing Dialog',
   fields: [
     {
       fields: [
         {
-          title: 'Tab 1',
+          label: 'Tab 1',
           description: 'Text boxes and text areas',
           name: '553',
           fields: [
             {
-              title: 'Text boxes',
+              label: 'Text boxes',
+              description: 'text boxes a lot of them',
+              hint: 'this is hint',
               name: '637',
               fields: [
                 {
                   name: 'switch_1',
                   onText: 'Switch is on',
                   offText: 'Switch is off',
-                  title: 'Switch',
+                  label: 'Switch',
                   component: components.SWITCH
                 },
                 {
@@ -59,14 +61,12 @@ const output = {
                 {
                   name: 'text_box_2',
                   label: 'Text Box with help',
-                  title: 'Text Box with help',
                   hint: 'Helper text',
                   component: components.TEXT_FIELD
                 },
                 {
                   name: 'text_box_3',
                   label: 'Text Box required',
-                  title: 'Text Box required',
                   isRequired: true,
                   component: components.TEXT_FIELD,
                   validate: [{ type: validators.REQUIRED }]
@@ -74,26 +74,24 @@ const output = {
                 {
                   name: 'text_box_4',
                   label: 'Text Box readonly',
-                  title: 'Text Box readonly',
                   isReadOnly: true,
                   component: components.TEXT_FIELD
                 },
                 {
                   name: 'text_box_5',
                   label: 'Text Box default',
-                  title: 'Text Box default',
                   component: components.TEXT_FIELD
                 },
                 {
                   name: 'text_box_6',
                   label: 'Text Box unvisible',
-                  title: 'Text Box unvisible',
+                  label: 'Text Box unvisible',
                   component: components.TEXT_FIELD
                 },
                 {
                   name: 'text_box_7',
                   label: 'Text Box with validator',
-                  title: 'Text Box with validator',
+                  label: 'Text Box with validator',
                   validate: [
                     {
                       type: validators.PATTERN,
@@ -105,7 +103,7 @@ const output = {
                 {
                   name: 'text_box_8',
                   label: 'Text Box integer value',
-                  title: 'Text Box integer value',
+                  label: 'Text Box integer value',
                   dataType: 'integer',
                   component: components.TEXT_FIELD,
                   type: 'number'
@@ -113,7 +111,7 @@ const output = {
                 {
                   name: 'text_box_9',
                   label: 'Text Box string value',
-                  title: 'Text Box string value',
+                  label: 'Text Box string value',
                   dataType: 'string',
                   component: components.TEXT_FIELD
                 }
@@ -121,13 +119,13 @@ const output = {
               component: components.SUB_FORM
             },
             {
-              title: 'Text areas',
+              label: 'Text areas',
               name: '638',
               fields: [
                 {
                   name: 'textarea_box_1',
                   label: 'Text Area',
-                  title: 'Text Area',
+                  label: 'Text Area',
                   component: components.TEXTAREA
                 }
               ],
@@ -137,18 +135,17 @@ const output = {
           component: components.TAB_ITEM
         },
         {
-          title: 'Tab 2',
+          label: 'Tab 2',
           description: 'Checks',
           name: '554',
           fields: [
             {
-              title: 'Check boxes',
+              label: 'Check boxes',
               name: '639',
               fields: [
                 {
                   name: 'check_box_1',
                   label: 'Check Box',
-                  title: 'Check Box',
                   component: components.CHECKBOX,
                   options: [
                     {
@@ -164,20 +161,19 @@ const output = {
                 {
                   name: 'check_box_2',
                   label: 'Check Box checked',
-                  title: 'Check Box checked',
                   component: components.CHECKBOX
                 }
               ],
               component: components.SUB_FORM
             },
             {
-              title: 'Radios',
+              label: 'Radios',
               name: '640',
               fields: [
                 {
                   name: 'radio_button_1',
                   label: 'Radio Button',
-                  title: 'Radio Button',
+                  label: 'Radio Button',
                   dataType: 'string',
                   component: components.RADIO,
                   options: [
@@ -198,7 +194,7 @@ const output = {
                 {
                   name: 'radio_button_2',
                   label: 'Radio Button sorted by',
-                  title: 'Radio Button sorted by',
+                  label: 'Radio Button sorted by',
                   dataType: 'string',
                   component: components.RADIO,
                   options: [
@@ -219,7 +215,6 @@ const output = {
                 {
                   name: 'radio_button_4',
                   label: 'Radio Button default',
-                  title: 'Radio Button default',
                   dataType: 'string',
                   component: components.RADIO,
                   options: [
@@ -244,18 +239,17 @@ const output = {
           component: components.TAB_ITEM
         },
         {
-          title: 'Tab 3',
+          label: 'Tab 3',
           description: '',
           name: '555',
           fields: [
             {
-              title: 'Dropdowns',
+              label: 'Dropdowns',
               name: '641',
               fields: [
                 {
                   name: 'async-drop-down',
                   label: 'Async dropdown',
-                  title: 'Dropdown',
                   dataType: 'string',
                   isSearchable: true,
                   isClearable: true,
@@ -266,7 +260,6 @@ const output = {
                 {
                   name: 'dropdown_list_1',
                   label: 'Dropdown',
-                  title: 'Dropdown',
                   dataType: 'string',
                   isSearchable: true,
                   isClearable: false,
@@ -296,7 +289,6 @@ const output = {
                 {
                   name: 'dropdown_list_2',
                   label: 'Dropdown default value',
-                  title: 'Dropdown default value',
                   dataType: 'string',
                   component: components.SELECT,
                   isClearable: true,
@@ -322,12 +314,11 @@ const output = {
                 {
                   name: 'dropdown_list_3',
                   label: 'Dropdown multiselect',
-                  title: 'Dropdown multiselect',
                   dataType: 'string',
                   component: components.SELECT,
                   isSearchable: true,
                   isMulti: true,
-                  simpleValue: false,
+                  //simpleValue: false,
                   options: [
                     {
                       label: '<None>',
@@ -370,7 +361,6 @@ const output = {
                 {
                   name: 'dropdown_list_4',
                   label: 'Dropdown sort by value',
-                  title: 'Dropdown sort by value',
                   dataType: 'string',
                   component: components.SELECT,
                   isSearchable: true,
@@ -422,43 +412,39 @@ const output = {
           component: components.TAB_ITEM
         },
         {
-          title: 'Tab 4',
+          label: 'Tab 4',
           description: '',
           name: '556',
           fields: [
             {
-              title: 'Datepickers',
+              label: 'Datepickers',
               name: '642',
               fields: [
                 {
                   name: 'date_control_1',
                   label: 'Datepicker',
-                  title: 'Datepicker',
                   component: components.DATE_PICKER
                 },
                 {
                   name: 'date_control_2',
                   label: 'Datepicker with past days',
-                  title: 'Datepicker with past days',
                   component: components.DATE_PICKER
                 }
               ],
               component: components.SUB_FORM
             },
             {
-              title: 'Timepickers',
+              label: 'Timepickers',
               name: '643',
               fields: [
                 {
                   name: 'date_time_control_1',
                   label: 'Timepicker',
-                  title: 'Timepicker',
                   component: components.TIME_PICKER
                 },
                 {
                   name: 'date_time_control_2',
                   label: 'Timepicker with past days',
-                  title: 'Timepicker with past days',
                   component: components.TIME_PICKER
                 }
               ],
@@ -468,42 +454,37 @@ const output = {
           component: components.TAB_ITEM
         },
         {
-          title: 'Mixed',
+          label: 'Mixed',
           description: '',
           name: '558',
           fields: [
             {
-              title: 'New Section',
+              label: 'New Section',
               name: '645',
               fields: [
                 {
                   name: 'text_box_10',
                   label: 'Text Box',
-                  title: 'Text Box',
                   component: components.TEXT_FIELD
                 },
                 {
                   name: 'textarea_box_2',
                   label: 'Text Area',
-                  title: 'Text Area',
                   component: components.TEXTAREA
                 },
                 {
                   name: 'check_box_3',
                   label: 'Check Box',
-                  title: 'Check Box',
                   component: components.CHECKBOX
                 },
                 {
                   name: 'check_box_4',
                   label: 'Check Box',
-                  title: 'Check Box',
                   component: components.CHECKBOX
                 },
                 {
                   name: 'dropdown_list_5',
                   label: 'Dropdown',
-                  title: 'Dropdown',
                   dataType: 'string',
                   component: components.SELECT,
                   options: [
@@ -528,7 +509,7 @@ const output = {
                 {
                   name: 'radio_button_3',
                   label: 'Radio Button',
-                  title: 'Radio Button',
+                  label: 'Radio Button',
                   dataType: 'string',
                   component: components.RADIO,
                   options: [
@@ -549,7 +530,6 @@ const output = {
                 {
                   name: 'date_time_control_3',
                   label: 'Timepicker',
-                  title: 'Timepicker',
                   component: components.TIME_PICKER
                 }
               ],

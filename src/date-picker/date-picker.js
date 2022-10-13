@@ -1,16 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useFieldApi } from '@data-driven-forms/react-form-renderer';
+import { DateInput } from '@signavio/ui/future';
+
+import getProps from '../get-props';
 
 const DatePicker = (props) => {
-  const { input, isDisabled, isReadOnly } = useFieldApi(props);
+  const { input, meta, ...rest } = useFieldApi(props);
 
-  return <input {...input} disabled={isDisabled} readOnly={isReadOnly} type="date" />;
-};
-
-DatePicker.propTypes = {
-  isDisabled: PropTypes.bool,
-  isReadOnly: PropTypes.bool
+  return <DateInput {...input} {...rest} {...getProps({meta})} />;
 };
 
 export default DatePicker;

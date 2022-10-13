@@ -3,15 +3,37 @@ import PropTypes from 'prop-types';
 
 import { useFormApi } from '@data-driven-forms/react-form-renderer';
 
+import { TabBar, Tab } from '@signavio/ui';
+
 const Tabs = ({ fields }) => {
   const formOptions = useFormApi();
 
-  return fields.map((tab) => (
-    <div key={tab.name}>
-      <h2>{tab.title}</h2>
-      {formOptions.renderForm(tab.fields, formOptions)}
-    </div>
-  ));
+  const [activeTab, setActiveTab] = React.useState(fields[0].name);
+
+  return (
+    <React.Fragment>
+      <TabBar>
+        {
+          fields.map((tab) => (
+            <Tab
+              active={activeTab === tab.name}
+              onClick={() => setActiveTab(tab.name)}
+              key={tab.name}
+            >
+              {tab.label}
+            </Tab>
+          ))
+        }
+      </TabBar>
+      {
+        fields.map((tab) => (
+          <div key={tab.name} hidden={activeTab !== tab.name}>
+            {formOptions.renderForm(tab.fields, formOptions)}
+          </div>
+        ))
+      }
+    </React.Fragment>
+  )
 };
 
 Tabs.propTypes = {

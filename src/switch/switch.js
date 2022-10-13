@@ -1,16 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useFieldApi } from '@data-driven-forms/react-form-renderer';
 
-const Switch = (props) => {
-  const { input } = useFieldApi({ ...props, type: 'checkbox' });
+import { BooleanInput } from '@signavio/ui/future';
 
-  return (
-    <label>
-      <input {...input} />
-      <span />
-    </label>
-  );
+import getProps from '../get-props';
+
+const Switch = (props) => {
+  const { input, meta, ...rest } = useFieldApi(props);
+
+  return <BooleanInput {...input} {...rest} yesLabel="Yes" noLabel="No" {...getProps({meta})} />;
 };
 
 export default Switch;

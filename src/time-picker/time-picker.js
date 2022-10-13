@@ -1,16 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useFieldApi } from '@data-driven-forms/react-form-renderer';
+import { TimeInput } from '@signavio/ui/future';
+
+import getProps from '../get-props';
 
 const TimePicker = (props) => {
-  const { input, isDisabled, isReadOnly } = useFieldApi(props);
+  const { input, meta, ...rest } = useFieldApi(props);
 
-  return <input {...input} disabled={isDisabled} readOnly={isReadOnly} type="time" />;
-};
-
-TimePicker.propTypes = {
-  isDisabled: PropTypes.bool,
-  isReadOnly: PropTypes.bool
+  return <TimeInput {...input} {...rest} {...getProps({meta})} />;
 };
 
 export default TimePicker;

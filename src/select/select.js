@@ -2,23 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useFieldApi } from '@data-driven-forms/react-form-renderer';
 
+import { Select as SignavioSelect } from '@signavio/ui/future';
+
+import getProps from '../get-props';
+
 const Select = (props) => {
-  const { input, isDisabled, options } = useFieldApi(props);
+  const { input, meta, options, ...rest } = useFieldApi(props);
 
   return (
-    <select {...input} disabled={isDisabled}>
+    <SignavioSelect {...input} {...rest} {...getProps({meta})}>
       {options &&
         options.map((option) => (
-          <option key={option.value} value={option.value}>
+          <SignavioSelect.Option key={option.value} value={option.value}>
             {option.label}
-          </option>
+          </SignavioSelect.Option>
         ))}
-    </select>
+    </SignavioSelect>
   );
 };
 
 Select.propTypes = {
-  isDisabled: PropTypes.bool,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
